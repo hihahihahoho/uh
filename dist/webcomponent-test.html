@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="format-detection" content="telephone=no">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+   <title>Ultimate Html</title>
+   <link rel="stylesheet" href="css/bundles.css">
+   <link rel="stylesheet" href="css/style.search.css">
+   <link rel="stylesheet" href="css/component.css">
+   <link rel="stylesheet" href="css/custom.css">
+   <link rel="shortcut icon" type="text/html" href="images/ico.png">
+   <!--[if IE 9]><link rel="stylesheet" href="css/ie9.css" type="text/css" /><![endif]-->
+</head>
+
+<body>
+   <input type="checkbox" id="sidebar-trigger" class="hidden">
+   <label for="sidebar-trigger" class="sidebar-overlay"></label>
+   <div class="sidebar-top">
+      <label class="ripple-100 sidebar-top__trigger" for="sidebar-trigger">
+         <img width="20" src="images/base/icons/burger/square/base.svg" alt="">
+      </label>
+      <div class="sidebar-top__logo">
+         <img src="images/logo.svg" alt="">
+      </div>
+   </div>
+   <div id="sidebar"></div>
+   <div class="main main--with-sidebar">
+      <div class="container">
+         <div class="h1 b pv30">Initialization</div>
+         <div class="box">
+            <div class="box__body">
+               <div class="pb20">
+                  <h5>
+                     Modify library:
+                  </h5>
+                  <p>
+                     ps1/bundles.ps1 <br>
+                  </p>
+               </div>
+               <div class="">
+                  <h5>
+                     Modify scss:
+                  </h5>
+                  <p>
+                     _colors.scss <br>
+                     _fontstyles.scss <br>
+                     _input.scss <br>
+                     _buttons.scss <br>
+                  </p>
+                  <h5>
+                     Modify components.css:
+                  </h5>
+                  <p>
+                     com-init <br>
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script>
+  $("#sidebar").load("_imports/sidebar.html");
+</script>
+<script src="js/bundles.js"></script>
+<script>
+  $(document).ready(function(){
+    $.getScript("js/init.js");
+    $.getScript("js/custom.js");
+  })
+</script>
+
+</html>

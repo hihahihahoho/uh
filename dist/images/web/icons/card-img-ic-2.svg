@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-card-img-ic-2">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="card-img-ic-2" clip-path="url(#clip-card-img-ic-2)">
+    <path id="Path_252" data-name="Path 252" d="M1.786,8a.786.786,0,1,0,0,1.571H22.214a.786.786,0,1,0,0-1.571Zm.786,3.143.869,4.771a4.682,4.682,0,0,0,1.369,2.531l-.13.39a1.385,1.385,0,0,1-1.318.951h0a.786.786,0,1,0,0,1.571h0a2.966,2.966,0,0,0,2.8-2,4.675,4.675,0,0,0,1.92.427h7.845a4.675,4.675,0,0,0,1.92-.427,2.966,2.966,0,0,0,2.8,2h0a.786.786,0,1,0,0-1.571h0a1.385,1.385,0,0,1-1.318-.951l-.131-.39a4.684,4.684,0,0,0,1.37-2.531l.867-4.771Z" transform="translate(0 -2)" fill="#e0e4eb"/>
+  </g>
+</svg>

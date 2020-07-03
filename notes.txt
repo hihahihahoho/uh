@@ -1,0 +1,40 @@
+List of component: 
+- Form:
+		+ input
+		+ select (Select 2)
+		+ mulitple (Select 2)
+		+ datepicker (Lightpick)
+		+ upload (Dropzone)
+		+ Radio
+		+ Checkbox
+		+ Range (not have yet)
+		+ Button
+		+ Form sample
+		+ Parsley
+- Tables:
+		+ Pagination
+  + tables normal
+  + tables zebra
+  + Data tables
+- Modal (Bootstrap)
+  + Modal normal 
+  + Modal login
+  + Modal foget password
+- Dropdown (Bootstrap)
+  + Dropdown normal
+- Tabs (Material)
+   + Tab lines
+   + Tab pills
+   + tabs vertical
+- Accordion (Jquerry accordion)
+  + accordion arrow
+  + accordion plus
+- Carousel (Swiper)
+  + swiper btn center
+  + swiper btn top
+  + swipper film
+- Images slider (light gallery)
+- Others 
+  + sticky sidebar
+  + Parallax
+- Components

@@ -1,0 +1,25 @@
+.materialboxed {
+   display: block;
+   cursor: -webkit-zoom-in;
+   cursor: zoom-in;
+   position: relative;
+   -webkit-transition: opacity .4s;
+   transition: opacity .4s;
+   -webkit-backface-visibility: hidden;
+}
+
+#materialbox-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #292929;
+    z-index: 1000;
+    will-change: opacity;
+}
+
+.materialboxed.active {
+    cursor: -webkit-zoom-out;
+    cursor: zoom-out;
+}
