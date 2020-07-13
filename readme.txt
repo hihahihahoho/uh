@@ -20,6 +20,7 @@ function defineDialogue() {
     let pageNumberFontSize = 20;
     let pageFromRight = 30;
     let pageFromBottom = 30;
+    let pageColor = '#000000';
 
 
     dialog.innerHTML = `
@@ -66,6 +67,10 @@ function defineDialogue() {
 			<span>Space form Bottom</span>
 			<input type="number" value="${pageFromBottom}" id="fromBottom"/>
 		</label>
+		<label>
+			<span>color</span>
+			<input type="text" value="${pageColor}" id="pageColor"/>
+		</label>
 		<label class="row">
 			<input type="checkbox" id="onFirstPage"/>
 			<span>Print Number on First Page</span>
@@ -105,9 +110,7 @@ async function insertPageNoCommand(selection, root) {
     onFirstPageCheckbox.addEventListener("change", () => onFirstPage = onFirstPageCheckbox.checked);
 
     // Show dialogue
-    let dialogueResult = await settingsDialogue.showModal().then(result => {
-       console.log(settingsDialogue + 'a')
-    }); ;
+    let dialogueResult = await settingsDialogue.showModal().then(result => {});;
 
     // Check if dialogue was cancelled 
     if (dialogueResult === "reasonCanceled") return;
@@ -117,6 +120,8 @@ async function insertPageNoCommand(selection, root) {
     var numberCaption = settingsDialogue.querySelector("#pageCaption").value;
     var posFormRight = settingsDialogue.querySelector("#fromRight").value;
     var posFormBottom = settingsDialogue.querySelector("#fromBottom").value;
+    var pageColor = settingsDialogue.querySelector("#pageColor").value;
+
     // Add a space after the caption if there is one
     if (numberCaption.trim().length > 0) {
         numberCaption += " ";
@@ -145,11 +150,14 @@ async function insertPageNoCommand(selection, root) {
 
         }
     });
-
+    var h1 = []
     // Loop through sorted list
-    sortedList.forEach((node, index) => {
+    sortedList.forEach((node, index, arr) => {
         if (node instanceof Artboard) {
-
+            // const txt = new Text();
+            // txt.text = 'test'
+            // txt.moveInParentCoordinates(artboard.globalBounds.width - posFormRight, artboard.globalBounds.height - posFormBottom);
+            // txt.fontSize = fontSize;
             // Make sure we only print the page number on the first page, if we're allowed to
             if (index === 0 && onFirstPage || index > 0) {
                 let artboard = node;
@@ -158,24 +166,85 @@ async function insertPageNoCommand(selection, root) {
                 //     	childNode.removeFromParent()
                 //     }
                 // });
+                var txt;
+                var txt2;
                 node.children.filter(obj => {
-                 	return obj.name == "pageNumberCaption"
-                 }).forEach(function(childNode, i) {
-                 			console.log(i)
-                    	childNode.removeFromParent()
+                    return obj.fontSize == 28
+                }).forEach(function(childNode, i) {
+                    txt = childNode.name
+                })
+
+                node.children.filter(obj => {
+                    return obj.fontSize == 24
+                }).forEach(function(childNode, i) {
+                    txt2 = childNode.name
+                })
+
+                var h1Page = {
+                    'type': 1,
+                    'txt': txt,
+                    'page': index + 1
+                }
+
+                var h2Page = {
+                    'type': 2,
+                    'txt': txt2,
+                    'page': index + 1
+                }
+                if (txt != undefined) {
+                    if (h1.findIndex(item => item.txt === h1Page.txt) < 0) {
+                        h1.push(h1Page);
+                    }
+                }
+                if (txt2 != undefined) {
+                    if (h1.findIndex(item => item.txt === h2Page.txt) < 0) {
+                        h1.push(h2Page);
+                    }
+                }
+                node.children.filter(obj => {
+                    return obj.name == "pageNumberCaption"
+                }).forEach(function(childNode, i) {
+                    childNode.removeFromParent()
                 });
                 const textNode = new Text();
-                textNode.textAlign = "right";
+                textNode.textAlign = "center";
                 textNode.name = "pageNumberCaption"
-                textNode.text = numberCaption + (index + 1).toString() ;
+                textNode.text = numberCaption + (index + 1).toString();
                 textNode.fontSize = fontSize;
-                textNode.fill = new Color("blue");
+                textNode.fill = new Color(pageColor);
                 artboard.addChild(textNode);
                 textNode.moveInParentCoordinates(artboard.globalBounds.width - posFormRight, artboard.globalBounds.height - posFormBottom);
             }
 
         }
     })
+    console.log(h1);
+    // const textTest = new Text();
+    // textTest.textAlign = "center";
+    // textTest.name = "textTest"
+    // textTest.text = 'test text';
+    // textTest.fontSize = 100;
+    // textTest.fill = new Color('blue');
+    root.children.filter(node => node.name == "tableOfContents").forEach(function(childNode, i) {
+        h1.forEach((item, index, arr) => {
+            const textName = new Text();
+            textName.textAlign = "left";
+            textName.text = item.txt;
+            textName.fontSize = 20;
+            textName.fill = new Color('green');
+            textName.moveInParentCoordinates(40, 100 + index * 40);
+            childNode.addChild(textName);
+            const textPage = new Text();
+            textPage.textAlign = "right";
+            textPage.text = item.page.toString();
+            textPage.fontSize = 20;
+            textPage.fill = new Color('red');
+            textPage.moveInParentCoordinates(childNode.globalBounds.width - 40, 100 + index * 40);
+            childNode.addChild(textPage)
+        })
+        // childNode.addChild(textTest)
+    });
+    // root.addChild(textTest)
 }
 
 module.exports = {
