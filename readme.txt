@@ -153,10 +153,16 @@ async function insertPageNoCommand(selection, root) {
             // Make sure we only print the page number on the first page, if we're allowed to
             if (index === 0 && onFirstPage || index > 0) {
                 let artboard = node;
-                node.children.forEach(function(childNode, i) {
-                    if (childNode.name == "pageNumberCaption"){
+                // node.children.forEach(function(childNode, i) {
+                //     if (childNode.name == "pageNumberCaption"){
+                //     	childNode.removeFromParent()
+                //     }
+                // });
+                node.children.filter(obj => {
+                 	return obj.name == "pageNumberCaption"
+                 }).forEach(function(childNode, i) {
+                 			console.log(i)
                     	childNode.removeFromParent()
-                    }
                 });
                 const textNode = new Text();
                 textNode.textAlign = "right";
